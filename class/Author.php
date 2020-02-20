@@ -3,7 +3,7 @@
 /**
  * Description of Author
  *
- * @author Gerd
+ * @author Gerd Ratsch
  */
 class Author {
     var $m_iID;
