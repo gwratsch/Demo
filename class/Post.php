@@ -5,6 +5,7 @@
  *
  * @author Gerd
  */
+//test9
 class Post {
     var $m_iID;
     var $m_sTitle;
