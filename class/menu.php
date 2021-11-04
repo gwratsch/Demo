@@ -5,6 +5,7 @@
  *
  * @author Gerd
  */
+// test 8
 class menu {
     function menu_blok(){
         $menuPosts = array(
