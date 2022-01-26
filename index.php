@@ -1,5 +1,5 @@
 <?php
-//test 4
+//test 4 rrwer
 require_once __DIR__.'/vendor/autoload.php';
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -7,7 +7,7 @@ $app = new Silex\Application();
 
 $app['debug'] = false;
 
-require_once '/class/sqllist.php';
+require_once './class/sqllist.php';
 $sqllist = new sqllist();
 
 function inputCheck($data) {
@@ -19,8 +19,8 @@ function inputCheck($data) {
 }
 
 $app->get('/', function () use ( $sqllist) {
-    require_once '/class/Author.php';
-    require_once '/class/template.php';
+    require_once './class/Author.php';
+    require_once './class/template.php';
     
     $authorList = $sqllist->selectAuthors();
     $aResult = $authorList->fetchall();   
@@ -44,8 +44,8 @@ $app->get('/', function () use ( $sqllist) {
 
 $app->get('/author',function ()  use ( $sqllist) {
 
-    require_once '/class/Author.php';
-    require_once '/class/template.php';
+    require_once './class/Author.php';
+    require_once './class/template.php';
     
     $authorList = $sqllist->selectAuthorPostsAll();
     $aResult = $authorList->fetchall();  
@@ -64,8 +64,8 @@ $app->get('/author',function ()  use ( $sqllist) {
 } ); 
 
 $app->get('/author/new', function (Silex\Application $app) {
-    require_once '/class/author.php';
-    require_once '/class/template.php';
+    require_once './class/author.php';
+    require_once './class/template.php';
     
     $sAuthor = new Author();
     $action='/author/addNew';
@@ -91,8 +91,8 @@ $app->post('/author/addNew', function (Request $request) use ($app){
 } );
 
 $app->get('/author/{id}', function (Silex\Application $app, $id)  use ( $sqllist) {
-    require_once '/class/Author.php';
-    require_once '/class/template.php';
+    require_once './class/Author.php';
+    require_once './class/template.php';
     
     $cAuthorList = $sqllist->selectAuthorPosts($id);
     $aResult = $cAuthorList->fetchall();
@@ -117,9 +117,9 @@ $app->get('/author/{id}', function (Silex\Application $app, $id)  use ( $sqllist
 } ); 
 
 //Build update form for Author content
-$app->get('/author/{id}/update', function (Silex\Application $app, $id) use ($app, $sqllist){
-    require_once '/class/Author.php';
-    require_once '/class/template.php';
+$app->get('/author/{id}/update', function ( $id) use ($app, $sqllist){
+    require_once './class/Author.php';
+    require_once './class/template.php';
     
     $getDBsql = $sqllist->selectAuthor($id);
     $getDBresult = $getDBsql->fetchall();
@@ -154,8 +154,8 @@ $app->post('/author/u{id}', function (Request $request) use ($app){
 } );
 
 //Delete the author and his posts
-$app->get('/author/{id}/delete', function (Silex\Application $app, $id) use ($app, $sqllist){
-    require_once '/class/template.php';
+$app->get('/author/{id}/delete', function ( $id) use ($app, $sqllist){
+    require_once './class/template.php';
     $ID=0;
     $getDBsql = $sqllist->selectAuthor($id);
     $getDBresult = $getDBsql->fetchall();   
@@ -183,8 +183,8 @@ $app->get('/author/{id}/delete', function (Silex\Application $app, $id) use ($ap
 
 $app->get('/post',function ()  use (  $sqllist) {
 
-    require_once '/class/Post.php';
-    require_once '/class/template.php';
+    require_once './class/Post.php';
+    require_once './class/template.php';
     
     $authorPostList = $sqllist->selectPostsAuthor();
     $Result = $authorPostList->fetchall();  
@@ -202,9 +202,9 @@ $app->get('/post',function ()  use (  $sqllist) {
     return $output;
 } ); 
 
-$app->get('/post/new{id}', function (Silex\Application $app, $id) {
-    require_once '/class/Post.php';
-    require_once '/class/template.php';
+$app->get('/post/new{id}', function ( $id) {
+    require_once './class/Post.php';
+    require_once './class/template.php';
     
     $sPost = new Post();
     $sPost->m_iIDauthor = $id;
@@ -232,9 +232,9 @@ $app->post('/post/new', function (Request $request) use ($app){
 } );
 
 
-$app->get('/post/{id}', function (Silex\Application $app, $id) use ($sqllist){
-    require_once '/class/Post.php';
-    require_once '/class/template.php';
+$app->get('/post/{id}', function ( $id) use ($sqllist){
+    require_once './class/Post.php';
+    require_once './class/template.php';
     
     $getDBsql = $sqllist->selectPost($id);
     $getDBresult = $getDBsql->fetchall();
@@ -273,7 +273,7 @@ $app->post('/post/u{id}', function (Request $request) use ($app){
     return $app->redirect('/author/'.$IDauthor);
 } );
 
-$app->get('/post/{id}/delete', function (Silex\Application $app, $id) use ($app, $sqllist){
+$app->get('/post/{id}/delete', function ( $id) use ($app, $sqllist){
 
     $getDBsql = $sqllist->selectPost($id);
     $getDBresult = $getDBsql->fetchall();  
@@ -291,7 +291,7 @@ $app->get('/post/{id}/delete', function (Silex\Application $app, $id) use ($app,
 } );
 
 $app->error(function (\Exception $e, Request $request, $code){
-    require_once '/class/template.php';
+    require_once './class/template.php';
     switch ($code) {
         case 404:
             $message = 'The requested page could not be found.';

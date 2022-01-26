@@ -16,7 +16,7 @@ class template {
         return $head;
     }
     function pageTemplate($pageTitle, $nav, $section, $body, $pageFooter){
-        require_once '/class/menu.php';
+        require_once './class/menu.php';
         $pagecontent = '';
         $pagecontent .= template::hearderSettings();
         $pagecontent .= '<header><h1>'.$pageTitle.'</h1></header>';

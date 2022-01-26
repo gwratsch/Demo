@@ -1,0 +1,39 @@
+version: "3.9"
+services:
+  php-apache:
+    build: .
+    ports:
+      - "80:80"
+    working_dir: /var/www/html
+    volumes:
+      - "../demo:/var/www/html"
+      - "../logs/demo:/etc/apache2/logs"
+    depends_on:
+      - "mysql"
+    environment:
+      #- PHP_IDE_CONFIG=serverName=apache-docker-cli
+      - PHP_IDE_CONFIG=serverName='dev.demo.nl'
+      - XDEBUG_SESSION='PHPSTORM'
+      - DB_HOST=mysql
+      - DB_DATABASE=demoDB
+      - PRIMARY_SITE_URL=http://dev.demo.nl
+    networks:
+      default:
+        aliases:
+          - host.docker.internal
+ #         - localhost
+  mysql:
+
+    ports:
+      -  "3307:3307"
+    image: mysql:5.7
+    volumes:
+      - "../db/demo/mysql/var/lib/mysql:/var/lib/mysql"
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: demouser
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: demoDB
+
+
