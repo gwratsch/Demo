@@ -19,7 +19,7 @@ class Post {
         $this->m_iIDauthor ="";
     }
     public function displayPostList($aResult){
-        $newaResult='';
+        $newaResult=array();
         foreach ($aResult as $rowid => $rowvalue) {
 
             foreach ($rowvalue as $fieldname => $fieldValue) {

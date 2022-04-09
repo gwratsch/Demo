@@ -9,7 +9,7 @@ class sqllist{
     
     //database connection settings in /vendor/config/dbconfig.php
     protected function connect(){
-        require_once '/vendor/config/dbconfig.php';
+        require_once './vendor/config/dbconfig.php';
         $conndb = new connect();
         $conn = $conndb->connectDB();
         return $conn;

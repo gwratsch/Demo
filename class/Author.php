@@ -14,7 +14,7 @@ class Author {
         $this->m_sName ="";
     }
     public function authorName($id){
-        require_once '/class/sqllist.php';
+        require_once './class/sqllist.php';
         $conn = new sqllist();
         $authorIdselect = $conn->selectAuthor($id);
         $aAuthorName = $authorIdselect->fetchall();
@@ -26,7 +26,7 @@ class Author {
         return $sAuthorName;
     }
     public function displayAuthorInfo($aResult){
-        $newaResult='';
+        $newaResult=array();
         $iID = 0;
         foreach ($aResult as $rowid => $rowvalue) {
 
@@ -45,7 +45,7 @@ class Author {
         return $newaResult;
     }
     public function displayAuthorPost($aResult){
-        $newaResult='';
+        $newaResult=array();
         foreach ($aResult as $rowid => $rowvalue) {
 
             foreach ($rowvalue as $fieldname => $fieldValue) {
@@ -70,7 +70,7 @@ class Author {
         return $newaResult;
     }
     public function displayAuthorPostList($aResult){
-        $newaResult='';
+        $newaResult=array();
         foreach ($aResult as $rowid => $rowvalue) {
 
             foreach ($rowvalue as $fieldname => $fieldValue) {

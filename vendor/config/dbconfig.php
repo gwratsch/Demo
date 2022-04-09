@@ -8,10 +8,10 @@ class connect {
         $config = new \Doctrine\DBAL\Configuration();
 
         $connectionParams = array(
-            'dbname' => 'demo',
-            'user' => '',
-            'password' => '',
-            'host' => 'localhost',
+            'dbname' => 'demoDB',
+            'user' => 'demouser',
+            'password' => 'secret',
+            'host' => 'mysql',
             'driver' => 'pdo_mysql',
         );
         $conn = \Doctrine\DBAL\DriverManager::getConnection($connectionParams, $config);
